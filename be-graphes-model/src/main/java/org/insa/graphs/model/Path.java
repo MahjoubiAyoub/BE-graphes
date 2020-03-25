@@ -270,7 +270,12 @@ public class Path {
      */
     public double getMinimumTravelTime() {
         // TODO:
-        return 0;
+    	double time = 0;
+    	for(Arc monArc : this.arcs) {
+    		time += monArc.getMinimumTravelTime();
+    	}
+    	
+        return time;
     }
 
 }
