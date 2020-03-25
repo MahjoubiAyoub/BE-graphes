@@ -202,7 +202,26 @@ public class Path {
      */
     public boolean isValid() {
         // TODO:
-        return false;
+    	
+    	if(this.isEmpty()) {
+    		return true;
+    	}
+    	
+    	else if(this.size() == 1) {
+    		return true;
+    	}
+    	
+    	else {
+    		Node node = this.getOrigin();
+    		for(Arc arc : this.arcs) {
+    			if (!node.equals(arc.getOrigin())) {
+    				return false;
+    			}
+    			node = arc.getDestination();
+    		}
+    	}
+    	
+        return true;
     }
 
     /**
@@ -233,7 +252,12 @@ public class Path {
      */
     public double getTravelTime(double speed) {
         // TODO:
-        return 0;
+    	double time = 0;
+    	double vitesse = speed * (1000 / 3600); // m/s
+    	float length = getLength();
+    	time = length / vitesse;
+    	
+        return time;
     }
 
     /**
