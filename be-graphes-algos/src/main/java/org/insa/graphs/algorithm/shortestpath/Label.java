@@ -8,20 +8,28 @@ public class Label implements Comparable<Label> {
 	private boolean marque;
 	protected double cout;
 	private Node pere;
-	
-	
+	private boolean dPile;
+
 	public Label(Node sommet) {
 		
 		this.sommet = sommet;
 		this.marque = false;
 		this.cout = Double.POSITIVE_INFINITY;
 		this.pere = null;
-		
+		this.dPile = false;
 		
 	}
 	
+	public boolean isdPile() {
+		return dPile;
+	}
+
+	public void setdPile(boolean dPile) {
+		this.dPile = dPile;
+	}
+	
 	public boolean isMarque() {
-		return marque;
+		return this.marque;
 	}
 	
 	public void setMarque(boolean marque) {
@@ -29,7 +37,7 @@ public class Label implements Comparable<Label> {
 	}
 	
 	public double getCout() {
-		return cout;
+		return this.cout;
 	}
 	
 	public void setCout(double cout) {
@@ -37,7 +45,7 @@ public class Label implements Comparable<Label> {
 	}
 	
 	public Node getPere() {
-		return pere;
+		return this.pere;
 	}
 	
 	public void setPere(Node pere) {
@@ -45,19 +53,29 @@ public class Label implements Comparable<Label> {
 	}
 	
 	public Node getSommet() {
-		return sommet;
+		return this.sommet;
 	}
 	
 	public void setSommet(Node sommet) {
 		this.sommet = sommet;
 	}
-
+	
+	public double getSomCout() {
+		return this.cout;
+	}
+	
 	@Override
 	public int compareTo(Label o) {
 		// TODO Auto-generated method stub
-		return 0;
+		
+		if (this.getSomCout() < o.getSomCout()) {
+			return -1;
+		}
+		else if (this.getSomCout() == o.getSomCout()) {
+			return 0;
+		}
+		else 
+			return 1;
 	}
-	
-	
 
 }
