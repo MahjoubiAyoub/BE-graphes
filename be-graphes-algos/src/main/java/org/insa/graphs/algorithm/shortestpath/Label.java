@@ -6,42 +6,42 @@ public class Label implements Comparable<Label> {
 	
 	private Node sommet;
 	private boolean marque;
-	protected double cout;
+	protected float cost;
 	private Node pere;
-	private boolean dPile;
+	private boolean dTas;
 
 	public Label(Node sommet) {
 		
 		this.sommet = sommet;
 		this.marque = false;
-		this.cout = Double.POSITIVE_INFINITY;
+		this.cost = Float.POSITIVE_INFINITY;
 		this.pere = null;
-		this.dPile = false;
+		this.dTas = false;
 		
 	}
 	
-	public boolean isdPile() {
-		return dPile;
+	public boolean getdTas() {
+		return this.dTas;
 	}
 
-	public void setdPile(boolean dPile) {
-		this.dPile = dPile;
+	public void setdTas() {
+		this.dTas = true;
 	}
 	
-	public boolean isMarque() {
+	public boolean getMarque() {
 		return this.marque;
 	}
 	
-	public void setMarque(boolean marque) {
-		this.marque = marque;
+	public void setMarque() {
+		this.marque = true;
 	}
 	
-	public double getCout() {
-		return this.cout;
+	public float getCost() {
+		return this.cost;
 	}
 	
-	public void setCout(double cout) {
-		this.cout = cout;
+	public void setCost(float cost) {
+		this.cost = cost;
 	}
 	
 	public Node getPere() {
@@ -60,18 +60,18 @@ public class Label implements Comparable<Label> {
 		this.sommet = sommet;
 	}
 	
-	public double getSomCout() {
-		return this.cout;
+	public float getTotalCost() {
+		return this.cost;
 	}
 	
 	@Override
 	public int compareTo(Label o) {
 		// TODO Auto-generated method stub
 		
-		if (this.getSomCout() < o.getSomCout()) {
+		if (this.getTotalCost() < o.getTotalCost()) {
 			return -1;
 		}
-		else if (this.getSomCout() == o.getSomCout()) {
+		else if (this.getTotalCost() == o.getTotalCost()) {
 			return 0;
 		}
 		else 

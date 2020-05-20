@@ -70,6 +70,7 @@ public class Path {
         	return new Path(graph, nodes.get(0));
         }// 2 noeuds
         else {
+        	
         	Iterator<Node> nodeIterator = nodes.iterator();
         	Node node = nodeIterator.next();
         	

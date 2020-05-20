@@ -150,12 +150,14 @@ public class BinaryHeap<E extends Comparable<E>> implements PriorityQueue<E> {
         }else {
         	
         	index = this.array.indexOf(x);
+        	
         	// Nous n'avons pas trouvé l'element nous soulevons une exception
         	if (index == -1 || index >= this.currentSize) {
         		throw new ElementNotFoundException(x);
         	}
         	// L'élément etait trouve nous le supprimons
         	else {
+        		
         		indexDernier =--this.currentSize;
         		
         		// L'element supprime n'etait pas le dernier
