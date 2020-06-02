@@ -33,13 +33,70 @@ public class Path {
      * 
      * @deprecated Need to be implemented.
      */
-    public static Path createFastestPathFromNodes(Graph graph, List<Node> nodes)
-            throws IllegalArgumentException {
+    public static Path createFastestPathFromNodes(Graph graph, List<Node> nodes) throws IllegalArgumentException {
         List<Arc> arcs = new ArrayList<Arc>();
+        boolean arcCourtInit = false;
+		Arc arcRapide = null;
         // TODO:
-        
+        // Pas noeud :
+        if(nodes.size() == 0) {
+        	return new Path(graph);
+        }// 1 noeud :
+        else if (nodes.size() == 1) {
+        	return new Path(graph, nodes.get(0));
+        }// 2 noeuds
+        else {
+        	
+        	Iterator<Node> nodeIterator = nodes.iterator();
+        	Node node = nodeIterator.next();
+        	
+        	// Parcourir les Noeuds
+        	while(nodeIterator.hasNext()) {
+        		
+        		Node destination = nodeIterator.next();
+        		
+        		// Parcourir les Arcs dont le Noeud 
+        		Iterator<Arc> arcIterator = node.iterator();
+        		
+        		while (arcIterator.hasNext()) {
+        			
+					Arc arc = arcIterator.next();
+					
+					// Pour tester si l'arc emmene au node souhaitée
+					if (arc.getDestination().equals(destination)) {
+						
+						 // Si c'est le premier arc que l'on considere
+						if (!arcCourtInit) {
+							
+							arcRapide = arc;
+							arcCourtInit = true;
+							
+						}
+						// Sinon nous regardons si l'arc est plus court 
+						else if (arc.getMinimumTravelTime() < arcRapide.getMinimumTravelTime()) {
+							arcRapide = arc;
+						}
+					}
+				}
+        		
+        		// Si nous n'avons pas retenu d'arc, la liste est pas validee
+				if (arcRapide == null) {
+					
+					throw new IllegalArgumentException();
+					
+				}
+				// Sinon, nous rajoutons le plus short
+				else {
+					
+					arcs.add(arcRapide);
+					node = destination;
+					arcCourtInit = false;
+        		
+				}
+        	}
         
         return new Path(graph, arcs);
+        }
     }
 
     /**
